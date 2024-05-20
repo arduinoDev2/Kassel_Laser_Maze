@@ -20,7 +20,7 @@ const int diagnosisTestBtn = 47;
 
 const int fogTime = 5000;
 const long dissableFogTime = 300000;
-//const long dissableFogTime = 10000;
+//const long dissableFogTime = 7000;
 #define FOG_MACHINE_PIN 9
 #define FOG_BUTTON_PIN 43
 unsigned long startFogTime;
@@ -36,7 +36,9 @@ const int winScore[] = { 100, 300, 500 };
 const int smokePin = A0;
 void setup() {
   Serial.begin(9600);
-  Timer1.attachInterrupt(isr, 100000); // Set the desired interval (in microseconds)
+  //Timer1.attachInterrupt(isr, 100000); // Set the desired interval (in microseconds)
+  Timer1.initialize(100000);
+  Timer1.attachInterrupt(isr); // blinkLED to run every 0.15 seconds
   pinMode(smokePin, OUTPUT);
   digitalWrite(smokePin, HIGH);
   pinMode(FOG_MACHINE_PIN, OUTPUT);
